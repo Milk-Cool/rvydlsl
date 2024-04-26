@@ -18,6 +18,7 @@ var options = {
 };
 
 function chaint(text, chain, cb){
+  console.log(chain.length, chain[0])
     return chain.length > 0 ? translatte(text.slice(0, 1024), {to: chain[0]}).then(res => {
         chaint(res.text, chain.slice(1), cb)
     }).catch(console.error) : cb(text);

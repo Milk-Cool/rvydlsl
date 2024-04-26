@@ -1,0 +1,28 @@
+{
+  "name": "rvydlsl",
+  "version": "1.0.0",
+  "description": "бот для Клуба Любителей Гротеска (КЛГ)",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Milk-Cool/rvydlsl.git"
+  },
+  "keywords": [
+    "aaa"
+  ],
+  "author": "Milk_Cool",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Milk-Cool/rvydlsl/issues"
+  },
+  "homepage": "https://github.com/Milk-Cool/rvydlsl#readme",
+  "dependencies": {
+    "html-to-text": "^9.0.5",
+    "node-telegram-bot-api": "^0.65.1",
+    "request": "^2.88.2",
+    "translatte": "^3.0.1"
+  }
+}

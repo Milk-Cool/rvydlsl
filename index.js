@@ -12,10 +12,6 @@ const TelegramBot = require('node-telegram-bot-api');
 const {TOKEN, ID} =process.env;
 const bot = new TelegramBot(TOKEN, {polling:false});
 
-var options = {
-  headers: {'User-Agent': 'Wikilipsum'},
-  json:true
-};
 
 function chaint(text, chain, cb){
   console.log(chain.length, chain[0])
@@ -25,6 +21,10 @@ function chaint(text, chain, cb){
 }
 
 function rec(){
+  var options = {
+    headers: {'User-Agent': 'Wikilipsum'},
+    json:true
+  };
   options["url"] = "http://en.wikipedia.org/w/api.php?action=query&list=random&format=json&rnnamespace=0&rnlimit=1";
   request(options, function (error, response, body) {
     var pageId = body.query.random[0].id;
@@ -147,15 +147,15 @@ function rec(){
     ], res => {
           console.log(res)
           bot.sendMessage(ID, permalink + "\n" + res.slice(0, 800));
-          setTimeout(rec, 1000 * 60 * 60);
       });
     });
   });
 }
 
 rec();
+setInterval(rec, 60 * 60 * 1000);
 
 require("http").createServer((req, res) => {
   res.writeHead(200);
   res.end("OK");
-}).listen(8080);
+}).listen(8081);

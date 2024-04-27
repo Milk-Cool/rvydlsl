@@ -15,7 +15,7 @@ const bot = new TelegramBot(TOKEN, {polling:false});
 
 function chaint(text, chain, cb){
   console.log(chain.length, chain[0])
-    return chain.length > 0 ? translatte(text.slice(0, 1024), {to: chain[0]}).then(res => {
+    return chain.length > 0 ? translatte(text.slice(0, 2048), {to: chain[0]}).then(res => {
         chaint(res.text, chain.slice(1), cb)
     }).catch(console.error) : cb(text);
 }
@@ -36,8 +36,10 @@ function rec(){
 
       content = content.replace(/\[.+\]/g, "");
       content = content.replace(/\/wiki\/File.+\.\w\w\w/g, "");
+
+      content = content.substr(content.length < 1024 ? 0 : Math.floor(Math.random() * (content.length - 1024)), 1024);
       
-      chaint(content.slice(0, 1024), [
+      chaint(content.slice(0, 2048), [
         "af",
         "sq",
         "am",
@@ -146,7 +148,7 @@ function rec(){
         "ru"
     ], res => {
           console.log(res)
-          bot.sendMessage(ID, permalink + "\n" + res.slice(0, 800));
+          bot.sendMessage(ID, permalink + "\n" + res.slice(0, 1000));
       });
     });
   });
